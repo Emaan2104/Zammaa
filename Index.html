@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surprise for Mohtaram 🎁</title>
+  <style>
+    :root {
+      --main-bg: linear-gradient(to right, #ffdde1, #ee9ca7);
+      --text-color: #333;
+      --card-bg: #fff;
+      --shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--main-bg);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .countdown {
+      font-size: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .message {
+      font-size: 1.2rem;
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      margin-top: 2rem;
+      animation: fadeIn 2s ease-in-out;
+      max-width: 600px;
+      width: 90%;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .countdown {
+        font-size: 1.2rem;
+      }
+      .message {
+        font-size: 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎁 Surprise Locked... ⏳</h1>
+  <div class="countdown" id="countdown"></div>
+
+  <div class="message hidden" id="message">
+    <h2>🎉 Happy Birthday My Mohtaram Awais Raza 🎉</h2>
+    <p>From teacher to friend, and now the love of my life... 💖</p>
+    <p>You are my world, my peace, and the reason behind every smile 😊</p>
+    <p>May your life be filled with endless joy, deep love, and calm success 🌸</p>
+    <p>I am so lucky to have you. Forever yours... your <strong>محترمہ</strong> 💌</p>
+  </div>
+
+  <script>
+    const countdownEl = document.getElementById('countdown');
+    const messageEl = document.getElementById('message');
+
+    const targetDate = new Date('May 14, 2025 00:00:00').getTime();
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      if (distance < 0) {
+        clearInterval(timer);
+        countdownEl.style.display = 'none';
+        document.querySelector('h1').textContent = '🎉 Surprise Unlocked! 🎉';
+        messageEl.classList.remove('hidden');
+      } else {
+        countdownEl.innerHTML = `Unlocking in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
