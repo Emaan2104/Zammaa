@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surprise for Mohtaram 🎁</title>
+  <style>
+    :root {
+      --main-bg: linear-gradient(to right, #ffdde1, #ee9ca7);
+      --text-color: #333;
+      --card-bg: #fff;
+      --shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--main-bg);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .countdown {
+      font-size: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .message {
+      font-size: 1.2rem;
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      margin-top: 2rem;
+      animation: fadeIn 2s ease-in-out;
+      max-width: 600px;
+      width: 90%;
+      z-index: 2;
+      position: relative;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes sparkle {
+      0% {transform: translateY(0) rotate(0); opacity: 1;}
+      100% {transform: translateY(-800px) rotate(720deg); opacity: 0;}
+    }
+
+    .sparkle {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      animation: sparkle 5s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .countdown {
+        font-size: 1.2rem;
+      }
+      .message {
+        font-size: 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2023/03/31/audio_38ba3ffdd4.mp3" type="audio/mpeg">
+  </audio>
+
+  <h1>🎁 Surprise Locked... ⏳</h1>
+  <div class="countdown" id="countdown"></div>
+
+  <div class="message hidden" id="message">
+    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="gift" width="100" style="margin-bottom: 20px;">
+    <h2>🎉 Happy Birthday My Mohtaram Awais Raza 🎉</h2>
+    <p>From teacher to friend, and now the love of my life... 💖</p>
+    <p>You are my world, my peace, and the reason behind every smile 😊</p>
+    <p>May your life be filled with endless joy, deep love, and calm success 🌸</p>
+    <p>I am so lucky to have you. Forever yours... your <strong>محترمہ</strong> 💌</p>
+  </div>
+
+  <script>
+    const countdownEl = document.getElementById('countdown');
+    const messageEl = document.getElementById('message');
+
+    const targetDate = new Date('May 14, 2025 00:00:00').getTime();
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      if (distance < 0) {
+        clearInterval(timer);
+        countdownEl.style.display = 'none';
+        document.querySelector('h1').textContent = '🎉 Surprise Unlocked! 🎉';
+        messageEl.classList.remove('hidden');
+        startSparkles();
+      } else {
+        countdownEl.innerHTML = `Unlocking in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }, 1000);
+
+    function startSparkles() {
+      for (let i = 0; i < 40; i++) {
+        let sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = Math.random() * 100 + 'vw';
+        sparkle.style.top = Math.random() * 100 + 'vh';
+        sparkle.style.animationDuration = (Math.random() * 5 + 3) + 's';
+        sparkle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 80%)`;
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 8000);
+      }
+      setInterval(startSparkles, 5000);
+    }
+  </script>
+</body>
+</html>
